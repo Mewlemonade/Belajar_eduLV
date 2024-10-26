@@ -1,0 +1,53 @@
+body {
+    font-family: 'century gothic';
+}
+
+.btn-register {
+    background-color: #187CFF !important;
+    color: white !important;
+}
+
+.btn-register:hover {
+    background-color: #06489e !important;
+    color: white !important;
+}
+
+.nav-link {
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    opacity: 0.75;
+}
+
+.nav-link.active {
+    color: #187CFF !important;
+    display: inline-block;
+    position: relative;
+    border-bottom: 2px solid #187CFF;
+}
+
+.nav-link:hover {
+    opacity: 1;
+    color: #187CFF !important;
+}
+
+.nav-link::before {
+    transition: 300ms;
+    height: 5px;
+    content: "";
+    position: absolute;
+    background-color: #0468fd;
+    left: 0;
+}
+
+.nav-link-grow-up::before {
+    height: 0%;
+    width: 100%;
+    bottom: 0px;
+    left: 0;
+}
+
+.nav-link-grow-up:hover::before {
+    height: 5px;
+    left: 0;
+}

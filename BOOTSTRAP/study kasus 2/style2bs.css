@@ -1,0 +1,16 @@
+.navbar {
+    padding: 20px;
+}
+
+.header {
+    background-color: plum;
+}
+
+.content {
+    background-color: grey;
+    height: 400px;
+}
+
+.footer {
+    background-color: plum;
+}

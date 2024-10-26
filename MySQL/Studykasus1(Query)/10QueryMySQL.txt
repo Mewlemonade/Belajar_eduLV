@@ -1,0 +1,33 @@
+
+--10 Macam Query 
+
+--1. Input data Apoteker
+INSERT INTO `apoteker` (`nama`, `tanggal_lahir`, `alamat`, `no_tlp`) VALUES
+('junaidi', '2000-10-01', 'Jalan Kamboja', 08123456789);
+
+--2. Select Semua Apoteker
+SELECT * FROM `apoteker`;
+
+--3. Select semua data Apoteker dengan kondisi nama
+SELECT * FROM `apoteker` WHERE `nama` = 'jamilah';
+
+--4. Select nama dan tanggal lahir Apoteker dengan kondisi tanggal lahir > 2002-01-01
+SELECT `nama`, `tanggal_lahir` FROM `apoteker` WHERE `tanggal_lahir` > '2002-01-01';
+
+--5. Select nama dan tanggal lahir Apoteker dengan kondisi tanggal lahir >= 2004, hanya tahun saja
+SELECT `nama`, `tanggal_lahir` FROM `apoteker` WHERE YEAR(`tanggal_lahir`) >= 2004;
+
+--6. Input data Pelanggan
+INSERT INTO `pelanggan`(`nama`, `alamat`, `no_tlp`) VALUES ('jamaludin',NULL,'08928374525');
+
+--7. Select nama dan nomor telephone pelanggan dengan kondisi nama
+SELECT `nama`, `no_tlp` FROM `pelanggan` WHERE `nama` = 'jamaludin'
+
+--8. Select nama, alamat Apoteker order by nama asc 
+SELECT `nama`,`alamat` FROM `apoteker` ORDER BY `nama` ASC ;
+
+--9. Update data nomor telephone pelanggan dengan nama
+UPDATE `pelanggan` SET `nama`='jamaludin',`alamat`= NULL, `no_tlp`='089191911' WHERE `nama`='jamaludin' ;
+
+--10. Delete data pelanggan 
+DELETE FROM `pelanggan` WHERE `nama` = 'jamaludin';

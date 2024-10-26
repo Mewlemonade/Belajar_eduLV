@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.phone img {
+    max-width: 100%;
+    height: auto;
+}
+
+.logo img {
+    width: 150px;
+    margin-bottom: 30px;
+}
+
+.login-box {
+    width: 350px;
+}
+
+.form-box {
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    font-size: 14px;
+    border: 1px solid #dbdbdb;
+    background-color: #fafafafa;
+    border-radius: 4px;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0095f6;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.login-box button:hover {
+    background-color: #0774bd;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 15px;
+}
+
+.divider hr {
+    flex: 1;
+    border: none;
+    height: 1px;
+    background-color: #dbdbdb;
+}
+
+.divider span {
+    margin: 0 10px;
+    color: grey;
+    font-weight: 500;
+}
+
+.facebook-login a {
+    color: #385185;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.facebook-login img {
+    width: 16px;
+    margin-right: 5px;
+}
+
+.forgot-password {
+    margin-top: 20px;
+}
+
+.forgot-password a {
+    color: #00376b;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.signup-box {
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.signup-box a {
+    color: #0095f6;
+    text-decoration: none;
+}
+
+.download-app p {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: grey;
+    font-size: 16px;
+}
+
+.app-icon a {
+    text-decoration: none;
+}
+
+.app-icon img {
+    width: 40%;
+    margin: 0 5px;
+}
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #fafafa;
+    border-top: 1px solid #dbdbdb;
+}
+
+.footer-links {
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: #8e8e8e;
+    text-decoration: none;
+    font-size: 12px;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    color: #8e8e8e;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.footer-bottom span {
+    margin: 0 10px;
+}
+
+.footer-bottom span:first-child {
+    cursor: pointer;
+}
+
+.footer-bottom span:first-child:hover {
+    text-decoration: underline;
+}
