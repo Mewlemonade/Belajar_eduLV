@@ -1,0 +1,7 @@
+--MACAM MACAM QUERY
+
+1.UPDATE `apoteker` SET `nama` = 'Vina' WHERE id = 2
+2.UPDATE `apoteker` SET `no_tlp` = '088787878787' WHERE nama = 'junaidi'
+3.UPDATE `apoteker` SET `alamat` = 'Jalan Cyka' WHERE nama = 'Michel'
+4.DELETE FROM `apoteker` WHERE id = 14
+5.DELETE FROM `apoteker` WHERE nama = `saputri`

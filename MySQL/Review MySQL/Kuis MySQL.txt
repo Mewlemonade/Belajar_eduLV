@@ -1,0 +1,138 @@
+1. Tampilkan seluruh data anggota yg menjadi admin
+ 
+SELECT * FROM anggota
+WHERE role = 'admin';
+ 
+2. Tampilan seluruh data anggota yg tidak menjadi admin
+ 
+SELECT * FROM anggota
+WHERE role != 'admin';
+ 
+3. Tampilkan id dan nama anggota yg belum pernah melakukan peminjaman
+ 
+SELECT anggota.id_anggota, anggota.nama FROM `anggota` 
+LEFT JOIN peminjaman 
+ON anggota.id_anggota=peminjaman.id_anggota
+WHERE peminjaman.id_anggota is NULL;
+ 
+4. Tampilan id, nama, telp anggota yg pernah melakukan peminjaman
+ 
+SELECT anggota.id_anggota, anggota.nama, anggota.telp FROM `anggota` 
+LEFT JOIN peminjaman 
+ON anggota.id_anggota=peminjaman.id_anggota
+WHERE peminjaman.id_anggota is not NULL;
+ 
+5. Tampilkan id, nama, telp anggota yg pernah melakukan peminjaman lebih dari 1x
+ 
+SELECT anggota.id_anggota, anggota.nama, anggota.telp FROM `anggota` 
+JOIN peminjaman ON anggota.id_anggota=peminjaman.id_anggota
+GROUP BY anggota.id_anggota, anggota.nama, anggota.telp
+HAVING COUNT(peminjaman.id_pinjam) > 1;
+ 
+6. Tampilkan nama, telp, alamat, tanggal pinjam dan tanggal kembali
+ 
+SELECT anggota.nama, anggota.telp, anggota.alamat, peminjaman.tgl_pinjam, peminjaman.tgl_kembali 
+FROM anggota
+JOIN peminjaman ON anggota.id_anggota=peminjaman.id_anggota;
+ 
+7. Tampilkan nama, telp, alamat, tanggal pinjam dan tanggal kembali yang tanggal kembalinya ada di bulan juni
+ 
+SELECT anggota.nama, anggota.telp, anggota.alamat, peminjaman.tgl_pinjam, peminjaman.tgl_kembali 
+FROM anggota
+JOIN peminjaman ON anggota.id_anggota=peminjaman.id_anggota
+WHERE MONTH(peminjaman.tgl_kembali)='06';
+ 
+8. Tampilkan nama, telp, alamat, tanggal pinjam dan tanggal kembali yang tanggal pinjamnya ada di bulan mei
+
+SELECT anggota.nama, anggota.telp, anggota.alamat, peminjaman.tgl_pinjam, peminjaman.tgl_kembali 
+FROM anggota
+JOIN peminjaman ON anggota.id_anggota=peminjaman.id_anggota
+WHERE MONTH(peminjaman.tgl_pinjam)='05';
+
+9. Tampilkan nama, telp, alamat, tanggal pinjam dan tanggal kembali yang tanggal pinjam dan tanggal kembalinya ada di bulan juni
+
+SELECT anggota.nama, anggota.telp, anggota.alamat, peminjaman.tgl_pinjam, peminjaman.tgl_kembali 
+FROM anggota
+JOIN peminjaman ON anggota.id_anggota=peminjaman.id_anggota
+WHERE MONTH(peminjaman.tgl_pinjam)='06' 
+AND MONTH(peminjaman.tgl_kembali)='06';
+
+10. Tampilkan nama, telp, alamat, tanggal pinjam dan tanggal kembali yang anggotanya beralamat di Bandung
+
+SELECT anggota.nama, anggota.telp, anggota.alamat, peminjaman.tgl_pinjam, peminjaman.tgl_kembali 
+FROM anggota
+JOIN peminjaman ON anggota.id_anggota=peminjaman.id_anggota
+WHERE anggota.alamat LIKE '%Bandung%';
+
+11. Tampilkan nama, telp, alamat, tanggal pinjam dan tanggal kembali yang anggotanya beralamat di Bandung dan berjenis kelamin perempuan
+
+SELECT anggota.nama, anggota.telp, anggota.alamat, anggota.sex, peminjaman.tgl_pinjam, peminjaman.tgl_kembali 
+FROM anggota
+JOIN peminjaman ON anggota.id_anggota=peminjaman.id_anggota
+WHERE anggota.alamat LIKE '%Bandung%'
+AND anggota.sex='P';
+
+12. Tampilkan nama, telp, alamat, tanggal pinjam, tanggal kembali, isbn dan qty, dimana jumlah qty lebih dari 1
+
+SELECT anggota.nama, anggota.telp, anggota.alamat, peminjaman.tgl_pinjam, peminjaman.tgl_kembali, detail_peminjaman.isbn, detail_peminjaman.qty
+FROM anggota
+JOIN peminjaman ON anggota.id_anggota=peminjaman.id_anggota
+JOIN detail_peminjaman ON peminjaman.id_pinjam=detail_peminjaman.id_pinjam
+WHERE detail_peminjaman.qty > 1;
+
+13. Tampilkan nama, telp, alamat, tanggal pinjam, tanggal kembali, isbn, qty, judul buku, harga pinjam dan total harga (qty di kali harga pinjam)
+
+SELECT anggota.nama, anggota.telp, anggota.alamat, peminjaman.tgl_pinjam, peminjaman.tgl_kembali, detail_peminjaman.isbn, detail_peminjaman.qty, buku.judul, buku.harga_pinjam, detail_peminjaman.qty * buku.harga_pinjam AS total_harga
+FROM anggota
+JOIN peminjaman ON anggota.id_anggota=peminjaman.id_anggota
+JOIN detail_peminjaman ON peminjaman.id_pinjam=detail_peminjaman.id_pinjam
+JOIN buku ON detail_peminjaman.isbn=buku.isbn;
+
+14. Tampilkan nama anggota, telp anggota, alamat anggota, tanggal pinjam, tanggal kembali, isbn, qty, judul buku, nama penerbit, nama pengarang dan nama katalog
+
+SELECT anggota.nama AS nama_anggota, anggota.telp AS telp_anggota, anggota.alamat AS alamat_anggota, peminjaman.tgl_pinjam, peminjaman.tgl_kembali, detail_peminjaman.isbn, detail_peminjaman.qty, buku.judul, penerbit.nama_penerbit, katalog.nama AS nama_katalog, pengarang.nama_pengarang 
+FROM anggota
+JOIN peminjaman ON anggota.id_anggota=peminjaman.id_anggota
+JOIN detail_peminjaman ON peminjaman.id_pinjam=detail_peminjaman.id_pinjam
+JOIN buku ON detail_peminjaman.isbn=buku.isbn
+JOIN penerbit ON buku.id_penerbit=penerbit.id_penerbit
+JOIN katalog ON buku.id_katalog=katalog.id_katalog
+JOIN pengarang ON buku.id_pengarang=pengarang.id_pengarang;
+
+15. Tampilkan semua data katalog, judul buku, dimana semua data katalog mempunyai relasi ke data buku
+
+SELECT katalog.*, buku.judul
+FROM katalog
+JOIN buku ON katalog.id_katalog=buku.id_katalog;
+
+16. Tampilkan semua data buku dan nama penerbit. Beserta data buku yang tidak mempunyai relasi ke data penerbit
+
+SELECT buku.*, penerbit.nama_penerbit
+FROM buku
+LEFT JOIN penerbit ON buku.id_penerbit=penerbit.id_penerbit;
+
+17. Tampilkan ada berapa jumlah pengarang PG05 pada table buku
+
+SELECT COUNT(buku.id_pengarang) AS jumlah_pengarang
+FROM buku
+WHERE buku.id_pengarang='PG05' ;
+
+18. Tampilkan data buku yang harganya lebih dari 10000
+
+SELECT *
+FROM buku
+WHERE buku.harga_pinjam > 10000 ;
+
+19. Tampilkan seluruh data buku yang diterbitkan oleh Penerbit 01, dimana buku tersebut harus mempunyai qty lebih dari 10
+
+SELECT buku.*, penerbit.nama_penerbit
+FROM buku
+JOIN penerbit ON buku.id_penerbit=penerbit.id_penerbit
+WHERE penerbit.nama_penerbit ='Penerbit 01' 
+AND buku.qty_stok > 10 ;
+
+20. Tampilkan seluruh data anggota yang baru ditambahkan pada bulan juni
+
+SELECT *
+FROM anggota
+WHERE MONTH(anggota.tgl_entry) = '06' ;
